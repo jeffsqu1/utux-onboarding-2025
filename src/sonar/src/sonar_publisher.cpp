@@ -66,7 +66,7 @@ class SonarPublisher : public rclcpp::Node {
       distMessage.data = {distForward_, distBottom_};
 
       RCLCPP_INFO(this->get_logger(), 
-      "time-[ %3.3f, %3.3f ]  |  dist-[ %3.3f, %3.3f ]", noisyTimeForward, timeBottom, distForward_, distBottom_);
+      "time - [ %3.3f, %3.3f ]", noisyTimeForward, noisyTimeBottom);
 
       timePublisher_->publish(timeMessage);
       cleanTimePublisher_->publish(cleanTimeMessage);
@@ -119,10 +119,10 @@ class SonarPublisher : public rclcpp::Node {
 
       dist_ = std::uniform_real_distribution<float>(0.5f, 26.0f);  // [ m ]
       distInitial_ = std::uniform_real_distribution<float>(4.5f, 11.3f);  // [ m ]
-      step_ = std::uniform_real_distribution<float>(-0.03, 0.08);  // [ m ]
+      step_ = std::uniform_real_distribution<float>(-0.02, 0.08);  // [ m ]
 
       obstructChance_ = std::uniform_real_distribution<float>(0.0f, 1.0f);
-      noise_ = std::uniform_int_distribution<int>(-3.5, 3.5); //  [ ms ]
+      noise_ = std::uniform_int_distribution<int>(-2.5, 2.5); //  [ ms ]
 
       publishInterval_ = std::uniform_int_distribution<int>(200, 1000);  // [ ms ]
 
